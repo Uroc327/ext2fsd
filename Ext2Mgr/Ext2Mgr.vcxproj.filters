@@ -212,5 +212,8 @@
     <ClInclude Include="Header Files\types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="wdkInclude.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
