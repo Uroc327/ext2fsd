@@ -21,6 +21,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -78,6 +79,77 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source Files\DelDeadLetter.cpp" />
+    <ClCompile Include="Source Files\DiskBox.cpp" />
+    <ClCompile Include="Source Files\DlgView.cpp" />
+    <ClCompile Include="Source Files\Donate.cpp" />
+    <ClCompile Include="Source Files\enumDisk.cpp" />
+    <ClCompile Include="Source Files\Ext2Attribute.cpp" />
+    <ClCompile Include="Source Files\Ext2Mgr.cpp" />
+    <ClCompile Include="Source Files\Ext2MgrDlg.cpp" />
+    <ClCompile Include="Source Files\HyperLink.cpp" />
+    <ClCompile Include="Source Files\MountPoints.cpp" />
+    <ClCompile Include="Source Files\PartBox.cpp" />
+    <ClCompile Include="Source Files\PartitionType.cpp" />
+    <ClCompile Include="Source Files\PerfStatDlg.cpp" />
+    <ClCompile Include="Source Files\Properties.cpp" />
+    <ClCompile Include="Source Files\SelectDrvLetter.cpp" />
+    <ClCompile Include="Source Files\ServiceManage.cpp" />
+    <ClCompile Include="Source Files\Splash.cpp" />
+    <ClCompile Include="Source Files\StdAfx.cpp" />
+    <ClCompile Include="Source Files\SysTray.cpp" />
+    <ClCompile Include="Source Files\toolbar.cpp" />
+    <ClCompile Include="Source Files\TreeList.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Source Files\Ext2Mgr.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resource Files\about.bmp" />
+    <Image Include="Resource Files\about.jpg" />
+    <Image Include="Resource Files\abouts.bmp" />
+    <Image Include="Resource Files\bigmain.ico" />
+    <Image Include="Resource Files\cdrom.bmp" />
+    <Image Include="Resource Files\disk.bmp" />
+    <Image Include="Resource Files\dvd.bmp" />
+    <Image Include="Resource Files\dynamic.bmp" />
+    <Image Include="Resource Files\Ext2Mgr.ico" />
+    <Image Include="Resource Files\floppy.bmp" />
+    <Image Include="Resource Files\line.bmp" />
+    <Image Include="Resource Files\penguin-1.ico" />
+    <Image Include="Resource Files\penguin-2.ico" />
+    <Image Include="Resource Files\penguin-3.ico" />
+    <Image Include="Resource Files\toolbar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource Files\Ext2Mgr.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Header Files\DelDeadLetter.h" />
+    <ClInclude Include="Header Files\DiskBox.h" />
+    <ClInclude Include="Header Files\DlgView.h" />
+    <ClInclude Include="Header Files\Donate.h" />
+    <ClInclude Include="Header Files\enumDisk.h" />
+    <ClInclude Include="Header Files\Ext2Attribute.h" />
+    <ClInclude Include="Header Files\ext2fs.h" />
+    <ClInclude Include="Header Files\Ext2Mgr.h" />
+    <ClInclude Include="Header Files\Ext2MgrDlg.h" />
+    <ClInclude Include="Header Files\HyperLink.h" />
+    <ClInclude Include="Header Files\MountPoints.h" />
+    <ClInclude Include="Header Files\ntdll.h" />
+    <ClInclude Include="Header Files\PartBox.h" />
+    <ClInclude Include="Header Files\PartitionType.h" />
+    <ClInclude Include="Header Files\PerfStatDlg.h" />
+    <ClInclude Include="Header Files\Properties.h" />
+    <ClInclude Include="Header Files\resource.h" />
+    <ClInclude Include="Header Files\SelectDrvLetter.h" />
+    <ClInclude Include="Header Files\ServiceManage.h" />
+    <ClInclude Include="Header Files\Splash.h" />
+    <ClInclude Include="Header Files\StdAfx.h" />
+    <ClInclude Include="Header Files\SysTray.h" />
+    <ClInclude Include="Header Files\toolbar.h" />
+    <ClInclude Include="Header Files\TreeList.h" />
+    <ClInclude Include="Header Files\types.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
