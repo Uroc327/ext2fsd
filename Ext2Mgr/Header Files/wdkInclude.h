@@ -155,7 +155,13 @@ typedef enum _THREADINFOCLASS {
     MaxThreadInfoClass								 
 } THREADINFOCLASS;  // km/ntddk.h
 
-// PKNORMAL_ROUTINE
+typedef
+VOID
+(*PKNORMAL_ROUTINE) (
+	_In_ PVOID NormalContext,
+	_In_ PVOID SystemArgument1,
+	_In_ PVOID SystemArgument2
+	);  // got from different webpages (google query: PKNORMAL_ROUTINE)
 
 typedef enum _PROCESSINFOCLASS {
     ProcessBasicInformation,
