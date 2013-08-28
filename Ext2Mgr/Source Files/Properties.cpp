@@ -588,6 +588,7 @@ void CProperties::SetCdrom(PEXT2_CDROM cdrom)
 
 BOOL CProperties::OnInitDialog()
 {
+	int i;
     CString str;
 
     CDialog::OnInitDialog();

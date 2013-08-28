@@ -2766,7 +2766,7 @@ extern "C" {
         ACCESS_MASK GrantedAccess;
     } FILE_ACCESS_INFORMATION, *PFILE_ACCESS_INFORMATION;
 
-#ifndef FILE_DEVICE_SECURE_OPEN
+//#ifndef FILE_DEVICE_SECURE_OPEN
 
     typedef struct _FILE_NAME_INFORMATION { // Information Classes 9 and 21
         ULONG FileNameLength;
@@ -2774,7 +2774,7 @@ extern "C" {
     } FILE_NAME_INFORMATION, *PFILE_NAME_INFORMATION,
     FILE_ALTERNATE_NAME_INFORMATION, *PFILE_ALTERNATE_NAME_INFORMATION;
 
-#endif
+//#endif
 
     typedef struct _FILE_LINK_RENAME_INFORMATION { // Info Classes 10 and 11
         BOOLEAN ReplaceIfExists;

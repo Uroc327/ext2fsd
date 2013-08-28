@@ -1385,7 +1385,9 @@ CExt2MgrDlg::DriverChangeNotify(
 
 void CExt2MgrDlg::UpdateVolume(PEXT2_VOLUME volume)
 {
-    for (int i=0; i < m_VolumeList.GetItemCount(); i++) {
+	int i;
+
+    for (i=0; i < m_VolumeList.GetItemCount(); i++) {
         PULONG data = (PULONG)m_VolumeList.GetItemData(i);
         if (!data) {
             continue;
@@ -1412,7 +1414,9 @@ void CExt2MgrDlg::UpdateVolume(PEXT2_VOLUME volume)
 
 void CExt2MgrDlg::UpdateCdrom(PEXT2_CDROM cdrom)
 {
-    for (int i=0; i < m_VolumeList.GetItemCount(); i++) {
+	int i;
+
+    for (i=0; i < m_VolumeList.GetItemCount(); i++) {
         PULONG data = (PULONG)m_VolumeList.GetItemData(i);
         if (!data) {
             continue;

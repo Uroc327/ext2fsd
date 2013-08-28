@@ -5,6 +5,7 @@
 #define MANIFEST_RESOURCE_ID            1
 #define ID_RELOAD_DL                    3
 #define IDM_ABOUTBOX                    0x0010
+#undef RT_MANIFEST // resource type defined in um/winuser.h (24 too)
 #define RT_MANIFEST                     24
 #define IDM_CLOSE_SPLASH                0x0020
 #define IDD_ABOUTBOX                    100

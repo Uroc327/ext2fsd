@@ -212,7 +212,7 @@
     <ClInclude Include="Header Files\types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="wdkInclude.h">
+    <ClInclude Include="Header Files\wdkInclude.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

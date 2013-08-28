@@ -9,7 +9,7 @@
 #include <setupapi.h>
 #include <regstr.h>
 #include <winsvc.h>
-#include "mountmgr.h"
+//#include "mountmgr.h"
 #include "dbt.h"
 #include "ext2fs.h"
 #include <winioctl.h>
@@ -21,184 +21,6 @@
 #define USING_IOCTL_EX TRUE
 
 #if (USING_IOCTL_EX)
-
-#if !defined(_M_AMD64)
-
-//
-// Support for GUID Partition Table (GPT) disks.
-//
-
-//
-// There are currently two ways a disk can be partitioned. With a traditional
-// AT-style master boot record (PARTITION_STYLE_MBR) and with a new, GPT
-// partition table (PARTITION_STYLE_GPT). RAW is for an unrecognizable
-// partition style. There are a very limited number of things you can
-// do with a RAW partititon.
-//
-
-typedef enum _PARTITION_STYLE {
-    PARTITION_STYLE_MBR,
-    PARTITION_STYLE_GPT,
-    PARTITION_STYLE_RAW
-} PARTITION_STYLE;
-
-
-//
-// The following structure defines information in a GPT partition that is
-// not common to both GPT and MBR partitions.
-//
-
-typedef struct _PARTITION_INFORMATION_GPT {
-    GUID PartitionType;                 // Partition type. See table 16-3.
-    GUID PartitionId;                   // Unique GUID for this partition.
-    DWORD64 Attributes;                 // See table 16-4.
-    WCHAR Name [36];                    // Partition Name in Unicode.
-} PARTITION_INFORMATION_GPT, *PPARTITION_INFORMATION_GPT;
-
-//
-//  The following are GPT partition attributes applicable for any
-//  partition type. These attributes are not OS-specific
-//
-
-#define GPT_ATTRIBUTE_PLATFORM_REQUIRED             (0x0000000000000001)
-
-//
-// The following are GPT partition attributes applicable when the
-// PartitionType is PARTITION_BASIC_DATA_GUID.
-//
-
-#define GPT_BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER    (0x8000000000000000)
-#define GPT_BASIC_DATA_ATTRIBUTE_HIDDEN             (0x4000000000000000)
-#define GPT_BASIC_DATA_ATTRIBUTE_READ_ONLY          (0x1000000000000000)
-
-//
-// The following structure defines information in an MBR partition that is not
-// common to both GPT and MBR partitions.
-//
-
-typedef struct _PARTITION_INFORMATION_MBR {
-    BYTE  PartitionType;
-    BOOLEAN BootIndicator;
-    BOOLEAN RecognizedPartition;
-    DWORD HiddenSectors;
-} PARTITION_INFORMATION_MBR, *PPARTITION_INFORMATION_MBR;
-
-
-//
-// The structure SET_PARTITION_INFO_EX is used with the ioctl
-// IOCTL_SET_PARTITION_INFO_EX to set information about a specific
-// partition. Note that for MBR partitions, you can only set the partition
-// signature, whereas GPT partitions allow setting of all fields that
-// you can get.
-//
-
-typedef SET_PARTITION_INFORMATION SET_PARTITION_INFORMATION_MBR;
-typedef PARTITION_INFORMATION_GPT SET_PARTITION_INFORMATION_GPT;
-
-
-typedef struct _SET_PARTITION_INFORMATION_EX {
-    PARTITION_STYLE PartitionStyle;
-    union {
-        SET_PARTITION_INFORMATION_MBR Mbr;
-        SET_PARTITION_INFORMATION_GPT Gpt;
-    };
-} SET_PARTITION_INFORMATION_EX, *PSET_PARTITION_INFORMATION_EX;
-
-
-//
-// The structure CREATE_DISK_GPT with the ioctl IOCTL_DISK_CREATE_DISK
-// to initialize an virgin disk with an empty GPT partition table.
-//
-
-typedef struct _CREATE_DISK_GPT {
-    GUID DiskId;                    // Unique disk id for the disk.
-    DWORD MaxPartitionCount;        // Maximim number of partitions allowable.
-} CREATE_DISK_GPT, *PCREATE_DISK_GPT;
-
-//
-// The structure CREATE_DISK_MBR with the ioctl IOCTL_DISK_CREATE_DISK
-// to initialize an virgin disk with an empty MBR partition table.
-//
-
-typedef struct _CREATE_DISK_MBR {
-    DWORD Signature;
-} CREATE_DISK_MBR, *PCREATE_DISK_MBR;
-
-
-typedef struct _CREATE_DISK {
-    PARTITION_STYLE PartitionStyle;
-    union {
-        CREATE_DISK_MBR Mbr;
-        CREATE_DISK_GPT Gpt;
-    };
-} CREATE_DISK, *PCREATE_DISK;
-
-
-//
-// The structure GET_LENGTH_INFORMATION is used with the ioctl
-// IOCTL_DISK_GET_LENGTH_INFO to obtain the length, in bytes, of the
-// disk, partition, or volume.
-//
-
-typedef struct _GET_LENGTH_INFORMATION {
-    LARGE_INTEGER   Length;
-} GET_LENGTH_INFORMATION, *PGET_LENGTH_INFORMATION;
-
-//
-// The PARTITION_INFORMATION_EX structure is used with the
-// IOCTL_DISK_GET_DRIVE_LAYOUT_EX, IOCTL_DISK_SET_DRIVE_LAYOUT_EX,
-// IOCTL_DISK_GET_PARTITION_INFO_EX and IOCTL_DISK_GET_PARTITION_INFO_EX calls.
-//
-
-typedef struct _PARTITION_INFORMATION_EX {
-    PARTITION_STYLE PartitionStyle;
-    LARGE_INTEGER StartingOffset;
-    LARGE_INTEGER PartitionLength;
-    DWORD PartitionNumber;
-    BOOLEAN RewritePartition;
-    union {
-        PARTITION_INFORMATION_MBR Mbr;
-        PARTITION_INFORMATION_GPT Gpt;
-    };
-} PARTITION_INFORMATION_EX, *PPARTITION_INFORMATION_EX;
-
-
-//
-// GPT specific drive layout information.
-//
-
-typedef struct _DRIVE_LAYOUT_INFORMATION_GPT {
-    GUID DiskId;
-    LARGE_INTEGER StartingUsableOffset;
-    LARGE_INTEGER UsableLength;
-    DWORD MaxPartitionCount;
-} DRIVE_LAYOUT_INFORMATION_GPT, *PDRIVE_LAYOUT_INFORMATION_GPT;
-
-
-//
-// MBR specific drive layout information.
-//
-
-typedef struct _DRIVE_LAYOUT_INFORMATION_MBR {
-    DWORD Signature;
-} DRIVE_LAYOUT_INFORMATION_MBR, *PDRIVE_LAYOUT_INFORMATION_MBR;
-
-//
-// The structure DRIVE_LAYOUT_INFORMATION_EX is used with the
-// IOCTL_SET_DRIVE_LAYOUT_EX and IOCTL_GET_DRIVE_LAYOUT_EX calls.
-//
-
-typedef struct _DRIVE_LAYOUT_INFORMATION_EX {
-    DWORD PartitionStyle;
-    DWORD PartitionCount;
-    union {
-        DRIVE_LAYOUT_INFORMATION_MBR Mbr;
-        DRIVE_LAYOUT_INFORMATION_GPT Gpt;
-    };
-    PARTITION_INFORMATION_EX PartitionEntry[1];
-} DRIVE_LAYOUT_INFORMATION_EX, *PDRIVE_LAYOUT_INFORMATION_EX;
-
-#endif /* !defined(_M_AMD64) */
 
 //
 // New IOCTLs for GUID Partition tabled disks.
@@ -241,80 +63,31 @@ typedef DRIVE_LAYOUT_INFORMATION DRIVE_LAYOUT_INFORMATION_EXT, *PDRIVE_LAYOUT_IN
 
 #define IOCTL_STORAGE_QUERY_PROPERTY   CTL_CODE(IOCTL_STORAGE_BASE, 0x0500, METHOD_BUFFERED, FILE_ANY_ACCESS)
 
-/* storeage query type */
-typedef enum _STORAGE_QUERY_TYPE {
-    PropertyStandardQuery = 0,
-    PropertyExistsQuery,
-    PropertyMaskQuery,
-    PropertyQueryMaxDefined
-} STORAGE_QUERY_TYPE, *PSTORAGE_QUERY_TYPE;
-
 /* storage property id */
-typedef enum _STORAGE_PROPERTY_ID {
-    StorageDeviceProperty = 0,
-    StorageAdapterProperty
-} STORAGE_PROPERTY_ID, *PSTORAGE_PROPERTY_ID;
-
-/* storage property query */
-typedef struct _STORAGE_PROPERTY_QUERY {
-    STORAGE_PROPERTY_ID PropertyId;
-    STORAGE_QUERY_TYPE QueryType;
-    UCHAR AdditionalParameters[1];
-} STORAGE_PROPERTY_QUERY, *PSTORAGE_PROPERTY_QUERY;
+// the winioctl.h version has much more entries
+// typedef enum _STORAGE_PROPERTY_ID {
+//     StorageDeviceProperty = 0,
+//     StorageAdapterProperty
+// } STORAGE_PROPERTY_ID, *PSTORAGE_PROPERTY_ID;
 
 
 /* storage device descriptor */
-typedef struct _STORAGE_DEVICE_DESCRIPTOR {
-    ULONG Version;
-    ULONG Size;
-    UCHAR DeviceType;
-    UCHAR DeviceTypeModifier;
-    BOOLEAN RemovableMedia;
-    BOOLEAN CommandQueueing;
-    ULONG VendorIdOffset;
-    ULONG ProductIdOffset;
-    ULONG ProductRevisionOffset;
-    ULONG SerialNumberOffset;
-    STORAGE_BUS_TYPE BusType;
-    ULONG RawPropertiesLength;
-    UCHAR RawDeviceProperties[512];
-} STORAGE_DEVICE_DESCRIPTOR, *PSTORAGE_DEVICE_DESCRIPTOR;
-
-//
-// Adapter properties
-//
-// This descriptor can be retrieved from a target device object of from the
-// device object for the bus.  Retrieving from the target device object will
-// forward the request to the underlying bus
-//
-
-typedef struct _STORAGE_ADAPTER_DESCRIPTOR {
-
-    ULONG Version;
-
-    ULONG Size;
-
-    ULONG MaximumTransferLength;
-
-    ULONG MaximumPhysicalPages;
-
-    ULONG AlignmentMask;
-
-    BOOLEAN AdapterUsesPio;
-
-    BOOLEAN AdapterScansDown;
-
-    BOOLEAN CommandQueueing;
-
-    BOOLEAN AcceleratedTransfer;
-
-    BOOLEAN BusType;
-
-    USHORT BusMajorVersion;
-
-    USHORT BusMinorVersion;
-
-} STORAGE_ADAPTER_DESCRIPTOR, *PSTORAGE_ADAPTER_DESCRIPTOR;
+// the winioctl.h version has other tpyes
+// typedef struct _STORAGE_DEVICE_DESCRIPTOR {
+//     ULONG Version;                   // DWORD
+//     ULONG Size;                      // DOWRD
+//     UCHAR DeviceType;                // BYTE
+//     UCHAR DeviceTypeModifier;        // BYTE
+//     BOOLEAN RemovableMedia;          // BOOLEAN
+//     BOOLEAN CommandQueueing;         // BOOLEAN
+//     ULONG VendorIdOffset;            // DWORD
+//     ULONG ProductIdOffset;           // DWORD
+//     ULONG ProductRevisionOffset;     // DWORD
+//     ULONG SerialNumberOffset;        // DWORD
+//     STORAGE_BUS_TYPE BusType;        // STORAGE_BUS_TYPE
+//     ULONG RawPropertiesLength;       // DWORD
+//     UCHAR RawDeviceProperties[512];  // BYTE
+// } STORAGE_DEVICE_DESCRIPTOR, *PSTORAGE_DEVICE_DESCRIPTOR;
 
 
 //
@@ -431,7 +204,7 @@ typedef VOID (__stdcall *PFORMATEX)( PWCHAR DriveRoot,
                                      DWORD ClusterSize,
                                      PFMIFSCALLBACK Callback );
 
-#include "..\ext3fsd\include\common.h"
+#include "shared_common.h"
 
 /*
  * structure definitions

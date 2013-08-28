@@ -4,12 +4,17 @@ Replace missing defines/typedefs/... wdk includes
 
 Based on:
 
-  - km/wdm.h   -- 0162
-  - km/ntddk.h -- 0184
+  - km/wdm.h      -- 0162
+  - km/ntddk.h    -- 0184
+  - km/mountmgr.h -- ????
 
 --*/
 
-#include <ntdef.h>                                   // this is in <wdk_inc>/shared
+#ifndef _WDK_INCLUDE_INCLUDE_
+#define _WDK_INCLUDE_INCLUDE_
+
+#include <ntdef.h>                                   // these are in <wdk_inc>/shared
+#include <ntstatus.h>                                // apparently /{shared,um} are valid
 
 typedef struct _CLIENT_ID {
     HANDLE UniqueProcess;
@@ -439,3 +444,283 @@ typedef struct _KEY_VALUE_ENTRY {
     ULONG           DataOffset;
     ULONG           Type;
 } KEY_VALUE_ENTRY, *PKEY_VALUE_ENTRY;  // km/wdm.h
+
+#define DEVICE_TYPE ULONG  // km/wdm.h
+
+typedef struct _FILE_FS_DEVICE_INFORMATION {
+    DEVICE_TYPE DeviceType;
+    ULONG Characteristics;
+} FILE_FS_DEVICE_INFORMATION, *PFILE_FS_DEVICE_INFORMATION;  // km/wdm.h
+
+#if (NTDDI_VERSION >= NTDDI_WIN2K)
+_IRQL_requires_max_(PASSIVE_LEVEL)
+_Must_inspect_result_
+NTSYSAPI
+NTSTATUS
+NTAPI
+RtlAnsiStringToUnicodeString(
+    _When_(AllocateDestinationString, _Out_ _At_(DestinationString->Buffer, __drv_allocatesMem(Mem)))
+    _When_(!AllocateDestinationString, _Inout_)
+        PUNICODE_STRING DestinationString,
+    _In_ PCANSI_STRING SourceString,
+    _In_ BOOLEAN AllocateDestinationString
+    );
+#endif  // km/wdm.h
+
+
+#if (NTDDI_VERSION >= NTDDI_WIN2K)
+
+_When_(AllocateDestinationString,
+       _At_(DestinationString->MaximumLength,
+            _Out_range_(<=, (SourceString->MaximumLength / sizeof(WCHAR)))))
+_When_(!AllocateDestinationString,
+       _At_(DestinationString->Buffer, _Const_)
+       _At_(DestinationString->MaximumLength, _Const_))
+_IRQL_requires_max_(PASSIVE_LEVEL)
+_When_(AllocateDestinationString, _Must_inspect_result_)
+NTSYSAPI
+NTSTATUS
+NTAPI
+RtlUnicodeStringToAnsiString(
+    _When_(AllocateDestinationString, _Out_ _At_(DestinationString->Buffer, __drv_allocatesMem(Mem)))
+    _When_(!AllocateDestinationString, _Inout_)
+        PANSI_STRING DestinationString,
+    _In_ PCUNICODE_STRING SourceString,
+    _In_ BOOLEAN AllocateDestinationString
+    );
+#endif  // km/wdm.h
+
+#if defined(_X86_)
+
+//
+// i386 Specific portions of Mm component.
+//
+// Define the page size for the Intel 386 as 4096 (0x1000).
+//
+
+#define PAGE_SIZE 0x1000
+
+//
+// Define the number of trailing zeroes in a page aligned virtual address.
+// This is used as the shift count when shifting virtual addresses to
+// virtual page numbers.
+//
+
+#define PAGE_SHIFT 12L
+
+#elif defined(_AMD64_)
+
+//
+// AMD64 Specific portions of Mm component.
+//
+// Define the page size for the AMD64 as 4096 (0x1000).
+//
+
+#define PAGE_SIZE 0x1000
+
+//
+// Define the number of trailing zeroes in a page aligned virtual address.
+// This is used as the shift count when shifting virtual addresses to
+// virtual page numbers.
+//
+
+#define PAGE_SHIFT 12L
+
+#elif defined(_ARM_)
+
+//
+// ARM Specific portions of Mm component.
+//
+// Define the page size for the ARM as 4096 (0x1000).
+//
+
+#define PAGE_SIZE 0x1000
+
+//
+// Define the number of trailing zeroes in a page aligned virtual address.
+// This is used as the shift count when shifting virtual addresses to
+// virtual page numbers.
+//
+
+#define PAGE_SHIFT 12L
+
+#elif defined(_IA64_)
+
+//
+// IA64 Specific portions of Mm component.
+//
+// Define the page size for the IA64 as 8192 (0x2000).
+//
+
+#define PAGE_SIZE 0x2000
+
+//
+// Define the number of trailing zeroes in a page aligned virtual address.
+// This is used as the shift count when shifting virtual addresses to
+// virtual page numbers.
+//
+
+#define PAGE_SHIFT 13L
+
+#endif  // km/wdm.h
+
+#define IRP_MJ_CREATE                   0x00
+#define IRP_MJ_CREATE_NAMED_PIPE        0x01
+#define IRP_MJ_CLOSE                    0x02
+#define IRP_MJ_READ                     0x03
+#define IRP_MJ_WRITE                    0x04
+#define IRP_MJ_QUERY_INFORMATION        0x05
+#define IRP_MJ_SET_INFORMATION          0x06
+#define IRP_MJ_QUERY_EA                 0x07
+#define IRP_MJ_SET_EA                   0x08
+#define IRP_MJ_FLUSH_BUFFERS            0x09
+#define IRP_MJ_QUERY_VOLUME_INFORMATION 0x0a
+#define IRP_MJ_SET_VOLUME_INFORMATION   0x0b
+#define IRP_MJ_DIRECTORY_CONTROL        0x0c
+#define IRP_MJ_FILE_SYSTEM_CONTROL      0x0d
+#define IRP_MJ_DEVICE_CONTROL           0x0e
+#define IRP_MJ_INTERNAL_DEVICE_CONTROL  0x0f
+#define IRP_MJ_SHUTDOWN                 0x10
+#define IRP_MJ_LOCK_CONTROL             0x11
+#define IRP_MJ_CLEANUP                  0x12
+#define IRP_MJ_CREATE_MAILSLOT          0x13
+#define IRP_MJ_QUERY_SECURITY           0x14
+#define IRP_MJ_SET_SECURITY             0x15
+#define IRP_MJ_POWER                    0x16
+#define IRP_MJ_SYSTEM_CONTROL           0x17
+#define IRP_MJ_DEVICE_CHANGE            0x18
+#define IRP_MJ_QUERY_QUOTA              0x19
+#define IRP_MJ_SET_QUOTA                0x1a
+#define IRP_MJ_PNP                      0x1b
+#define IRP_MJ_PNP_POWER                IRP_MJ_PNP      // Obsolete....
+#define IRP_MJ_MAXIMUM_FUNCTION         0x1b  // km/wdm.h
+
+#define FILE_SUPERSEDE                  0x00000000	// km/wdm.h
+#define FILE_OPEN                       0x00000001	// km/wdm.h
+#define FILE_CREATE                     0x00000002	// km/wdm.h
+#define FILE_OPEN_IF                    0x00000003	// km/wdm.h
+#define FILE_OVERWRITE                  0x00000004	// km/wdm.h
+#define FILE_OVERWRITE_IF               0x00000005	// km/wdm.h
+#define FILE_MAXIMUM_DISPOSITION        0x00000005  // km/wdm.h
+
+#define FILE_DIRECTORY_FILE                     0x00000001  // km/wdm.h
+#define FILE_WRITE_THROUGH                      0x00000002	// km/wdm.h
+#define FILE_SEQUENTIAL_ONLY                    0x00000004	// km/wdm.h
+#define FILE_NO_INTERMEDIATE_BUFFERING          0x00000008	// km/wdm.h
+															// km/wdm.h
+#define FILE_SYNCHRONOUS_IO_ALERT               0x00000010	// km/wdm.h
+#define FILE_SYNCHRONOUS_IO_NONALERT            0x00000020	// km/wdm.h
+#define FILE_NON_DIRECTORY_FILE                 0x00000040	// km/wdm.h
+#define FILE_CREATE_TREE_CONNECTION             0x00000080	// km/wdm.h
+															// km/wdm.h
+#define FILE_COMPLETE_IF_OPLOCKED               0x00000100	// km/wdm.h
+#define FILE_NO_EA_KNOWLEDGE                    0x00000200	// km/wdm.h
+#define FILE_OPEN_REMOTE_INSTANCE               0x00000400	// km/wdm.h
+#define FILE_RANDOM_ACCESS                      0x00000800	// km/wdm.h
+															// km/wdm.h
+#define FILE_DELETE_ON_CLOSE                    0x00001000	// km/wdm.h
+#define FILE_OPEN_BY_FILE_ID                    0x00002000	// km/wdm.h
+#define FILE_OPEN_FOR_BACKUP_INTENT             0x00004000	// km/wdm.h
+#define FILE_NO_COMPRESSION                     0x00008000	// km/wdm.h
+															// km/wdm.h
+#if (NTDDI_VERSION >= NTDDI_WIN7)							// km/wdm.h
+#define FILE_OPEN_REQUIRING_OPLOCK              0x00010000	// km/wdm.h
+#define FILE_DISALLOW_EXCLUSIVE                 0x00020000	// km/wdm.h
+#endif /* NTDDI_VERSION >= NTDDI_WIN7 */					// km/wdm.h
+#if (NTDDI_VERSION >= NTDDI_WIN8)							// km/wdm.h
+#define FILE_SESSION_AWARE                      0x00040000	// km/wdm.h
+#endif /* NTDDI_VERSION >= NTDDI_WIN8 */					// km/wdm.h
+															// km/wdm.h
+#define FILE_RESERVE_OPFILTER                   0x00100000	// km/wdm.h
+#define FILE_OPEN_REPARSE_POINT                 0x00200000	// km/wdm.h
+#define FILE_OPEN_NO_RECALL                     0x00400000	// km/wdm.h
+#define FILE_OPEN_FOR_FREE_SPACE_QUERY          0x00800000	// km/wdm.h
+
+#define FILE_VALID_OPTION_FLAGS                 0x00ffffff  // km/wdm.h
+#define FILE_VALID_PIPE_OPTION_FLAGS            0x00000032	// km/wdm.h
+#define FILE_VALID_MAILSLOT_OPTION_FLAGS        0x00000032	// km/wdm.h
+#define FILE_VALID_SET_FLAGS                    0x00000036	// km/wdm.h
+
+#define FILE_SUPERSEDED                 0x00000000  // km/wdm.h
+#define FILE_OPENED                     0x00000001	// km/wdm.h
+#define FILE_CREATED                    0x00000002	// km/wdm.h
+#define FILE_OVERWRITTEN                0x00000003	// km/wdm.h
+#define FILE_EXISTS                     0x00000004	// km/wdm.h
+#define FILE_DOES_NOT_EXIST             0x00000005	// km/wdm.h
+
+#define FILE_WRITE_TO_END_OF_FILE       0xffffffff  // km/wdm.h
+#define FILE_USE_FILE_POINTER_POSITION  0xfffffffe	// km/wdm.h
+
+#define FILE_BYTE_ALIGNMENT             0x00000000  // km/wdm.h
+#define FILE_WORD_ALIGNMENT             0x00000001	// km/wdm.h
+#define FILE_LONG_ALIGNMENT             0x00000003	// km/wdm.h
+#define FILE_QUAD_ALIGNMENT             0x00000007	// km/wdm.h
+#define FILE_OCTA_ALIGNMENT             0x0000000f	// km/wdm.h
+#define FILE_32_BYTE_ALIGNMENT          0x0000001f	// km/wdm.h
+#define FILE_64_BYTE_ALIGNMENT          0x0000003f	// km/wdm.h
+#define FILE_128_BYTE_ALIGNMENT         0x0000007f	// km/wdm.h
+#define FILE_256_BYTE_ALIGNMENT         0x000000ff	// km/wdm.h
+#define FILE_512_BYTE_ALIGNMENT         0x000001ff	// km/wdm.h
+
+#define MAXIMUM_FILENAME_LENGTH         256  // km/wdm.h
+
+#define FILE_REMOVABLE_MEDIA                        0x00000001  // km/wdm.h
+#define FILE_READ_ONLY_DEVICE                       0x00000002	// km/wdm.h
+#define FILE_FLOPPY_DISKETTE                        0x00000004	// km/wdm.h
+#define FILE_WRITE_ONCE_MEDIA                       0x00000008	// km/wdm.h
+#define FILE_REMOTE_DEVICE                          0x00000010	// km/wdm.h
+#define FILE_DEVICE_IS_MOUNTED                      0x00000020	// km/wdm.h
+#define FILE_VIRTUAL_VOLUME                         0x00000040	// km/wdm.h
+#define FILE_AUTOGENERATED_DEVICE_NAME              0x00000080	// km/wdm.h
+#define FILE_DEVICE_SECURE_OPEN                     0x00000100	// km/wdm.h
+#define FILE_CHARACTERISTIC_PNP_DEVICE              0x00000800	// km/wdm.h
+#define FILE_CHARACTERISTIC_TS_DEVICE               0x00001000	// km/wdm.h
+#define FILE_CHARACTERISTIC_WEBDAV_DEVICE           0x00002000	// km/wdm.h
+#define FILE_CHARACTERISTIC_CSV                     0x00010000	// km/wdm.h
+#define FILE_DEVICE_ALLOW_APPCONTAINER_TRAVERSAL    0x00020000	// km/wdm.h
+#define FILE_PORTABLE_DEVICE                        0x00040000	// km/wdm.h
+
+#define MOUNTMGRCONTROLTYPE                         0x0000006D // 'm'  // km/mountmgr.h
+#define MOUNTDEVCONTROLTYPE                         0x0000004D // 'M'  // km/mountmgr.h
+
+#define IOCTL_MOUNTMGR_CREATE_POINT                 CTL_CODE(MOUNTMGRCONTROLTYPE, 0, METHOD_BUFFERED, FILE_READ_ACCESS | FILE_WRITE_ACCESS)  // km/mountmgr.h
+#define IOCTL_MOUNTMGR_DELETE_POINTS                CTL_CODE(MOUNTMGRCONTROLTYPE, 1, METHOD_BUFFERED, FILE_READ_ACCESS | FILE_WRITE_ACCESS)	 // km/mountmgr.h
+#define IOCTL_MOUNTMGR_QUERY_POINTS                 CTL_CODE(MOUNTMGRCONTROLTYPE, 2, METHOD_BUFFERED, FILE_ANY_ACCESS)						 // km/mountmgr.h
+#define IOCTL_MOUNTMGR_DELETE_POINTS_DBONLY         CTL_CODE(MOUNTMGRCONTROLTYPE, 3, METHOD_BUFFERED, FILE_READ_ACCESS | FILE_WRITE_ACCESS)	 // km/mountmgr.h
+#define IOCTL_MOUNTMGR_NEXT_DRIVE_LETTER            CTL_CODE(MOUNTMGRCONTROLTYPE, 4, METHOD_BUFFERED, FILE_READ_ACCESS | FILE_WRITE_ACCESS)	 // km/mountmgr.h
+#define IOCTL_MOUNTMGR_AUTO_DL_ASSIGNMENTS          CTL_CODE(MOUNTMGRCONTROLTYPE, 5, METHOD_BUFFERED, FILE_READ_ACCESS | FILE_WRITE_ACCESS)	 // km/mountmgr.h
+#define IOCTL_MOUNTMGR_VOLUME_MOUNT_POINT_CREATED   CTL_CODE(MOUNTMGRCONTROLTYPE, 6, METHOD_BUFFERED, FILE_READ_ACCESS | FILE_WRITE_ACCESS)	 // km/mountmgr.h
+#define IOCTL_MOUNTMGR_VOLUME_MOUNT_POINT_DELETED   CTL_CODE(MOUNTMGRCONTROLTYPE, 7, METHOD_BUFFERED, FILE_READ_ACCESS | FILE_WRITE_ACCESS)	 // km/mountmgr.h
+#define IOCTL_MOUNTMGR_CHANGE_NOTIFY                CTL_CODE(MOUNTMGRCONTROLTYPE, 8, METHOD_BUFFERED, FILE_READ_ACCESS)						 // km/mountmgr.h
+#define IOCTL_MOUNTMGR_KEEP_LINKS_WHEN_OFFLINE      CTL_CODE(MOUNTMGRCONTROLTYPE, 9, METHOD_BUFFERED, FILE_READ_ACCESS | FILE_WRITE_ACCESS)	 // km/mountmgr.h
+#define IOCTL_MOUNTMGR_CHECK_UNPROCESSED_VOLUMES    CTL_CODE(MOUNTMGRCONTROLTYPE, 10, METHOD_BUFFERED, FILE_READ_ACCESS)					 // km/mountmgr.h
+#define IOCTL_MOUNTMGR_VOLUME_ARRIVAL_NOTIFICATION  CTL_CODE(MOUNTMGRCONTROLTYPE, 11, METHOD_BUFFERED, FILE_READ_ACCESS)					 // km/mountmgr.h
+
+typedef struct _MOUNTMGR_CREATE_POINT_INPUT {
+    USHORT  SymbolicLinkNameOffset;
+    USHORT  SymbolicLinkNameLength;
+    USHORT  DeviceNameOffset;
+    USHORT  DeviceNameLength;
+} MOUNTMGR_CREATE_POINT_INPUT, *PMOUNTMGR_CREATE_POINT_INPUT;  // km/mountmgr.h
+
+typedef struct _MOUNTMGR_MOUNT_POINT {
+    ULONG   SymbolicLinkNameOffset;
+    USHORT  SymbolicLinkNameLength;
+    ULONG   UniqueIdOffset;
+    USHORT  UniqueIdLength;
+    ULONG   DeviceNameOffset;
+    USHORT  DeviceNameLength;
+} MOUNTMGR_MOUNT_POINT, *PMOUNTMGR_MOUNT_POINT;  // km/mountmgr.h
+
+typedef struct _MOUNTMGR_MOUNT_POINTS {
+    ULONG                   Size;
+    ULONG                   NumberOfMountPoints;
+    MOUNTMGR_MOUNT_POINT    MountPoints[1];
+} MOUNTMGR_MOUNT_POINTS, *PMOUNTMGR_MOUNT_POINTS;  // km/mountmgr.h
+
+typedef struct _MOUNTMGR_TARGET_NAME {
+    USHORT  DeviceNameLength;
+    WCHAR   DeviceName[1];
+} MOUNTMGR_TARGET_NAME, *PMOUNTMGR_TARGET_NAME;  // km/mountmgr.h
+
+#endif // _WDK_INCLUDE_INCLUDE_
