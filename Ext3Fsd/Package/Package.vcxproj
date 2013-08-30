@@ -61,6 +61,7 @@
   <PropertyGroup Label="Globals">
     <RootNamespace>Ext3Fsd_Package</RootNamespace>
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VisualStudioVersion)' == '11.0'">$(VCTargetsPath11)</VCTargetsPath>
+    <ProjectName>Package</ProjectName>
   </PropertyGroup>
   <PropertyGroup Label="PropertySheets">
     <PlatformToolset>WindowsKernelModeDriver8.0</PlatformToolset>
