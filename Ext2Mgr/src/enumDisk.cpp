@@ -1394,7 +1394,7 @@ Ext2PartInformation(PEXT2_PARTITION part)
 
         if ((part->Volume->EVP.bExt2 || part->Volume->EVP.bExt3)) {
             s = "      codepage:";
-            s += part->Volume->EVP.Codepage;
+            s += CString(part->Volume->EVP.Codepage);
             if (part->Volume->EVP.bReadonly) {
                 s += ",Readonly";
             }
@@ -1591,7 +1591,7 @@ Ext2CdromInformation(PEXT2_CDROM cdrom)
             ret += "    File system: ";
             if (cdrom->EVP.bExt2) {
                 s = "EXT";
-                s += ('2' + cdrom->EVP.bExt3);
+                s += ((UCHAR)('2' + cdrom->EVP.bExt3));
             } else {
                 s = "CDFS";
             }
@@ -1662,7 +1662,7 @@ Ext2VolumeInformation(PEXT2_VOLUME vol)
     s = "    Volume status: Online";
     if (vol->bRecognized && (vol->EVP.bExt2 || vol->EVP.bExt3)) {
         s += ",codepage:";
-        s += vol->EVP.Codepage;
+        s += CString(vol->EVP.Codepage);
         if (vol->EVP.bReadonly) {
             s += ",Readonly";
         }
@@ -2209,7 +2209,7 @@ Ext2StorePropertyinRegistry(PEXT2_VOLUME_PROPERTY2 EVP)
 
     if (strlen((CHAR*)EVP->Codepage) > 0) {
         data += CODEPAGE_NAME"=";
-        data += &EVP->Codepage[0];
+        data += CString(&EVP->Codepage[0]);
         data += ";";
     }
 
@@ -3993,7 +3993,7 @@ Ext2QueryRegistryMountPoint (
                               &drvSize);
 
         if (status == ERROR_SUCCESS) {
-            if (stricmp(devName, drvPath) == 0) {
+            if (_stricmp(devName, drvPath) == 0) {
                 RegCloseKey(hKey);
                 return dosPath[0];
             }

@@ -1160,7 +1160,7 @@ END
 // 24
 //
 
-MANIFEST_RESOURCE_ID    24      MOVEABLE PURE   "Ext2Mgr.exe.manifest"
+// MANIFEST_RESOURCE_ID    24      MOVEABLE PURE   "Ext2Mgr.exe.manifest"
 
 /////////////////////////////////////////////////////////////////////////////
 //

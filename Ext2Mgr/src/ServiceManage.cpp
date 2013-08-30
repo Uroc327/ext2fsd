@@ -179,7 +179,7 @@ BOOL CServiceManage::OnInitDialog()
             cbCodepage->AddString(gCodepages[i]);
             if (!m_Codepage.IsEmpty()) {
                 CHAR *buffer = m_Codepage.GetBuffer(CODEPAGE_MAXLEN);
-                if (stricmp(buffer, gCodepages[i]) == 0) {
+                if (_stricmp(buffer, gCodepages[i]) == 0) {
                     j = i;
                 }
             }

@@ -2,13 +2,13 @@
 #include <windows.h>
 #undef  WIN32_NO_STATUS
 
-namespace NT {
-extern "C" {
-
 #pragma warning(disable: 4005)  // macro redefinition
 //#include <ntddk.h>
 #include "wdkInclude.h"
 #pragma warning(default: 4005)
+
+namespace NT {
+extern "C" {
 
     typedef enum _SYSTEM_INFORMATION_CLASS {
         SystemBasicInformation,              // 0        Y        N

@@ -237,7 +237,7 @@ void CProperties::SetVolume(PEXT2_VOLUME vol)
     s = "Online";
     if (vol->bRecognized && (vol->EVP.bExt2 || vol->EVP.bExt3)) {
         s += ",codepage:";
-        s += vol->EVP.Codepage;
+        s += CString(vol->EVP.Codepage);
         if (vol->EVP.bReadonly) {
             s += ",Readonly";
         }
@@ -332,7 +332,7 @@ void CProperties::SetPartition(PEXT2_PARTITION part)
     if ( part->Volume->bRecognized &&
             (part->Volume->EVP.bExt2 || part->Volume->EVP.bExt3)) {
         s += ",codepage:";
-        s += part->Volume->EVP.Codepage;
+        s += CString(part->Volume->EVP.Codepage);
         if (part->Volume->EVP.bReadonly) {
             s += ",Readonly";
         }
@@ -539,7 +539,7 @@ void CProperties::SetCdrom(PEXT2_CDROM cdrom)
 
             if (cdrom->EVP.bExt2) {
                 s = "EXT";
-                s += ('2' + cdrom->EVP.bExt3);
+                s += ((UCHAR)('2' + cdrom->EVP.bExt3));
                 SET_WIN(IDC_SDEV_EXT2_INFO, TRUE);
             } else {
                 s = "CDFS";

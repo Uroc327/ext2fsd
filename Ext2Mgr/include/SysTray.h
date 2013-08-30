@@ -47,7 +47,7 @@ public:
     }
 
     //Create the tray icon
-    Create(CWnd* pWnd, UINT uCallbackMessage, LPCTSTR szTip, HICON icon, UINT uID);
+    BOOL Create(CWnd* pWnd, UINT uCallbackMessage, LPCTSTR szTip, HICON icon, UINT uID);
 
     //Change or retrieve the Tooltip text
     BOOL    SetTooltipText(LPCTSTR pszTooltipText);

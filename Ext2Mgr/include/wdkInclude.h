@@ -13,6 +13,9 @@ Based on:
 #ifndef _WDK_INCLUDE_INCLUDE_
 #define _WDK_INCLUDE_INCLUDE_
 
+namespace NT {
+extern "C" {
+
 #include <ntdef.h>                                   // these are in <wdk_inc>/shared
 #include <ntstatus.h>                                // apparently /{shared,um} are valid
 
@@ -490,6 +493,9 @@ RtlUnicodeStringToAnsiString(
     );
 #endif  // km/wdm.h
 
+}
+}
+
 #if defined(_X86_)
 
 //
@@ -722,5 +728,23 @@ typedef struct _MOUNTMGR_TARGET_NAME {
     USHORT  DeviceNameLength;
     WCHAR   DeviceName[1];
 } MOUNTMGR_TARGET_NAME, *PMOUNTMGR_TARGET_NAME;  // km/mountmgr.h
+
+#define MOUNTMGR_IS_DRIVE_LETTER(s) (   \
+    (s)->Length == 28 &&                \
+    (s)->Buffer[0] == '\\' &&           \
+    (s)->Buffer[1] == 'D' &&            \
+    (s)->Buffer[2] == 'o' &&            \
+    (s)->Buffer[3] == 's' &&            \
+    (s)->Buffer[4] == 'D' &&            \
+    (s)->Buffer[5] == 'e' &&            \
+    (s)->Buffer[6] == 'v' &&            \
+    (s)->Buffer[7] == 'i' &&            \
+    (s)->Buffer[8] == 'c' &&            \
+    (s)->Buffer[9] == 'e' &&            \
+    (s)->Buffer[10] == 's' &&           \
+    (s)->Buffer[11] == '\\' &&          \
+    (s)->Buffer[12] >= 'A' &&           \
+    (s)->Buffer[12] <= 'Z' &&           \
+    (s)->Buffer[13] == ':')  // km/mountmgr.h
 
 #endif // _WDK_INCLUDE_INCLUDE_
