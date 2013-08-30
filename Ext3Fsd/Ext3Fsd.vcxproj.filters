@@ -20,6 +20,21 @@
     <Filter Include="Header Files\shared">
       <UniqueIdentifier>{648d197b-7def-4ffd-8f0c-19374d8ddd9a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\asm">
+      <UniqueIdentifier>{5edb3b5d-b082-4d4d-a2f8-693635b5eb9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\linux">
+      <UniqueIdentifier>{2798ddc3-8801-4b31-b6c3-0882a52b39a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ext3">
+      <UniqueIdentifier>{7fbe76a7-5846-454c-a616-e8649a789600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\jbd">
+      <UniqueIdentifier>{3b82c67b-7e12-4a9c-a0b3-6a6fb0db8e7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nls">
+      <UniqueIdentifier>{9315dbcd-5821-4c2b-9537-a4c9c15aee83}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Inf Include="Ext3Fsd.inf">
@@ -27,8 +42,384 @@
     </Inf>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header Files\shared\shared_common.h">
+    <ClInclude Include="include\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ext2fs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ntifs.gnu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\asm\page.h">
+      <Filter>Header Files\asm</Filter>
+    </ClInclude>
+    <ClInclude Include="include\asm\semaphore.h">
+      <Filter>Header Files\asm</Filter>
+    </ClInclude>
+    <ClInclude Include="include\asm\uaccess.h">
+      <Filter>Header Files\asm</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\atomic.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\bit_spinlock.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\bitops.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\buffer_head.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\config.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\debugfs.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\errno.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\Ext2_fs.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\ext3_fs.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\ext3_fs_i.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\ext3_fs_sb.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\ext3_jbd.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\ext4_ext.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\freezer.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\fs.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\group.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\highmem.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\init.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\jbd.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\journal-head.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\kernel.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\kthread.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\list.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\lockdep.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\log2.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\magic.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\mm.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\module.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\mutex.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\nls.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\pagemap.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\poison.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\proc_fs.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\rbtree.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\sched.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\slab.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\spinlock.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\stddef.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\string.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\time.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\timer.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\types.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\linux\version.h">
+      <Filter>Header Files\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="include\shared\shared_common.h">
       <Filter>Header Files\shared</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\Ext3fsd.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\block.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cleanup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\close.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cmcb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\create.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\debug.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\devctl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dirctl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dispatch.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\except.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fastio.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fileinfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\flush.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fsctl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\linux.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lock.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\memory.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\misc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pnp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rbtree.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\read.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\shutdown.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\volinfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\write.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ext3\generic.c">
+      <Filter>Source Files\ext3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ext3\htree.c">
+      <Filter>Source Files\ext3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ext3\recover.c">
+      <Filter>Source Files\ext3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jbd\recovery.c">
+      <Filter>Source Files\jbd</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jbd\replay.c">
+      <Filter>Source Files\jbd</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jbd\revoke.c">
+      <Filter>Source Files\jbd</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_ascii.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_base.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp437.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp737.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp775.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp850.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp852.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp855.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp857.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp860.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp861.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp862.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp863.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp864.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp865.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp866.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp869.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp874.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp932.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp936.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp949.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp950.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp1250.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp1251.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_cp1255.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_euc-jp.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_iso8859-1.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_iso8859-2.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_iso8859-3.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_iso8859-4.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_iso8859-5.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_iso8859-6.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_iso8859-7.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_iso8859-9.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_iso8859-13.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_iso8859-14.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_iso8859-15.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_koi8-r.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_koi8-ru.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_koi8-u.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls\nls_utf8.c">
+      <Filter>Source Files\nls</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
