@@ -14,4 +14,129 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\nls_ascii.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_base.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp437.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp737.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp775.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp850.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp852.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp855.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp857.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp860.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp861.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp862.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp863.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp864.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp865.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp866.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp869.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp874.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp932.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp936.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp949.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp950.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp1250.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp1251.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_cp1255.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_euc-jp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_iso8859-1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_iso8859-2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_iso8859-3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_iso8859-4.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_iso8859-5.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_iso8859-6.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_iso8859-7.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_iso8859-9.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_iso8859-13.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_iso8859-14.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_iso8859-15.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_koi8-r.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_koi8-ru.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_koi8-u.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nls_utf8.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>

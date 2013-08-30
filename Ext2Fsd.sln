@@ -282,6 +282,8 @@ Global
 		{6A3D152E-8DA5-4114-9EC6-147CFED5D938}.Win7 Debug|Win32.Build.0 = Debug|Win32
 		{6A3D152E-8DA5-4114-9EC6-147CFED5D938}.Win7 Debug|Win32.Deploy.0 = Debug|Win32
 		{6A3D152E-8DA5-4114-9EC6-147CFED5D938}.Win7 Debug|x64.ActiveCfg = Debug|Win32
+		{6A3D152E-8DA5-4114-9EC6-147CFED5D938}.Win7 Debug|x64.Build.0 = Debug|Win32
+		{6A3D152E-8DA5-4114-9EC6-147CFED5D938}.Win7 Debug|x64.Deploy.0 = Debug|Win32
 		{6A3D152E-8DA5-4114-9EC6-147CFED5D938}.Win7 Release|Mixed Platforms.ActiveCfg = Release|Win32
 		{6A3D152E-8DA5-4114-9EC6-147CFED5D938}.Win7 Release|Mixed Platforms.Build.0 = Release|Win32
 		{6A3D152E-8DA5-4114-9EC6-147CFED5D938}.Win7 Release|Mixed Platforms.Deploy.0 = Release|Win32
@@ -338,6 +340,8 @@ Global
 		{E0B08092-42CC-4F78-963E-908C40D746C5}.Win7 Debug|Win32.Build.0 = Debug|Win32
 		{E0B08092-42CC-4F78-963E-908C40D746C5}.Win7 Debug|Win32.Deploy.0 = Debug|Win32
 		{E0B08092-42CC-4F78-963E-908C40D746C5}.Win7 Debug|x64.ActiveCfg = Debug|Win32
+		{E0B08092-42CC-4F78-963E-908C40D746C5}.Win7 Debug|x64.Build.0 = Debug|Win32
+		{E0B08092-42CC-4F78-963E-908C40D746C5}.Win7 Debug|x64.Deploy.0 = Debug|Win32
 		{E0B08092-42CC-4F78-963E-908C40D746C5}.Win7 Release|Mixed Platforms.ActiveCfg = Release|Win32
 		{E0B08092-42CC-4F78-963E-908C40D746C5}.Win7 Release|Mixed Platforms.Build.0 = Release|Win32
 		{E0B08092-42CC-4F78-963E-908C40D746C5}.Win7 Release|Mixed Platforms.Deploy.0 = Release|Win32
@@ -394,6 +398,8 @@ Global
 		{DE0D35E3-15F9-4F5E-B8AE-C37BAEFDB7E1}.Win7 Debug|Win32.Build.0 = Debug|Win32
 		{DE0D35E3-15F9-4F5E-B8AE-C37BAEFDB7E1}.Win7 Debug|Win32.Deploy.0 = Debug|Win32
 		{DE0D35E3-15F9-4F5E-B8AE-C37BAEFDB7E1}.Win7 Debug|x64.ActiveCfg = Debug|Win32
+		{DE0D35E3-15F9-4F5E-B8AE-C37BAEFDB7E1}.Win7 Debug|x64.Build.0 = Debug|Win32
+		{DE0D35E3-15F9-4F5E-B8AE-C37BAEFDB7E1}.Win7 Debug|x64.Deploy.0 = Debug|Win32
 		{DE0D35E3-15F9-4F5E-B8AE-C37BAEFDB7E1}.Win7 Release|Mixed Platforms.ActiveCfg = Release|Win32
 		{DE0D35E3-15F9-4F5E-B8AE-C37BAEFDB7E1}.Win7 Release|Mixed Platforms.Build.0 = Release|Win32
 		{DE0D35E3-15F9-4F5E-B8AE-C37BAEFDB7E1}.Win7 Release|Mixed Platforms.Deploy.0 = Release|Win32
